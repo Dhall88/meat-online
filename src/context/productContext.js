@@ -14,13 +14,9 @@ const initialState = {
 
 const reducer = (state, action) => {
   switch (action.type) {
-    case "ADD_PRODUCTS":
-      return {
-        allProducts: action.payload
-      };
     case "FILTER_PRODUCTS":
         return {
-            filteredProducts: action.payload.allProducts.filter(product => {
+            filteredProducts: action.payload.Products.filter(product => {
                 if(product.price >= action.payload.priceRange[0] && product.price <= action.payload.priceRange[1]) {
                     return product
                 }
