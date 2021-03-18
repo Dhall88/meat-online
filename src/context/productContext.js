@@ -3,20 +3,23 @@ import React, { useReducer, createContext } from "react";
 export const ProductContext = createContext();
 
 const initialState = {
+  products: [],
   filteredProducts: [],
-  priceRange: [0,100],
-  sorting: null,
-  pagination: 1,
-  itemsPerPage: 9,
   loading: false,
   error: null
 };
 
+
 const reducer = (state, action) => {
+  console.log(action.payload)
   switch (action.type) {
+    case "ADD_PRODUCTS":
+      return {
+        products: action.payload
+      };
     case "FILTER_PRODUCTS":
         return {
-            filteredProducts: action.payload.Products.filter(product => {
+            filteredProducts: action.payload.products.filter(product => {
                 if(product.price >= action.payload.priceRange[0] && product.price <= action.payload.priceRange[1]) {
                     return product
                 }
@@ -32,11 +35,6 @@ const reducer = (state, action) => {
                 }
             })
         };
-    case "SET_PAGINATION": {
-        return {
-            pagination: action.payload
-        }
-    };
     case "START":
       return {
         loading: true
