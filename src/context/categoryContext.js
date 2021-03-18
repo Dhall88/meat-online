@@ -14,7 +14,7 @@ const reducer = (state, action) => {
   switch (action.type) {
     case "SET_CATAGORY":
       return {
-        products: action.payload
+        category: action.payload
       };
     case "START":
       return {

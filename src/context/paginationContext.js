@@ -14,7 +14,7 @@ const reducer = (state, action) => {
   switch (action.type) {
     case "SET_PAGINATION":
       return {
-        products: action.payload
+        pagination: action.payload
       };
     case "START":
       return {
