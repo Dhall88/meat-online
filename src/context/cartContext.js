@@ -8,7 +8,10 @@ const initialState = {
   error: null
 };
 
+console.log("in cart context")
+
 const reducer = (state, action) => {
+  console.log(action.payload)
   switch (action.type) {
     case "ADD_PRODUCT":
       return {
