@@ -1,19 +1,18 @@
 import React, { useReducer, createContext } from "react";
 
-export const PaginationContext = createContext();
+export const ActiveProductContext = createContext();
 
 const initialState = {
-  pagination: 1,
+  activeProduct: {},
   loading: false,
   error: null
 };
 
-
 const reducer = (state, action) => {
   switch (action.type) {
-    case "SET_PAGINATION":
+    case "SET_PRODUCT":
       return {
-        pagination: action.payload
+        activeProduct: action.payload
       };
     case "START":
       return {
@@ -28,12 +27,12 @@ const reducer = (state, action) => {
   }
 };
 
-export const PaginationContextProvider = props => {
+export const ActiveProductContextProvider = props => {
   const [state, dispatch] = useReducer(reducer, initialState);
 
   return (
-    <PaginationContext.Provider value={[state, dispatch]}>
+    <ActiveProductContext.Provider value={[state, dispatch]}>
       {props.children}
-    </PaginationContext.Provider>
+    </ActiveProductContext.Provider>
   );
 };
