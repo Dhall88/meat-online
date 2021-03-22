@@ -3,10 +3,21 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
+import { CartContextProvider } from "./context/cartContext";
+import { ProductContextProvider } from "./context/productContext";
+import { PaginationContextProvider } from "./context/paginationContext";
+import { ActiveProductContextProvider} from "./context/activeProductContext";
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 ReactDOM.render(
   <React.StrictMode>
-    <App />
+    <CartContextProvider>
+      <ProductContextProvider>
+        <ActiveProductContextProvider>
+          <App />
+        </ActiveProductContextProvider>
+      </ProductContextProvider>
+    </CartContextProvider>
   </React.StrictMode>,
   document.getElementById('root')
 );

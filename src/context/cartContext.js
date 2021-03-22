@@ -20,7 +20,7 @@ const reducer = (state, action) => {
     case "DEL_PRODUCT":
       return {
         products: state.products.filter((product) => {
-          return product._id !== action.payload
+          return product._id !== action.payload._id
         }
         )
       };
