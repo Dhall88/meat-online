@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from 'react';
-import Square from './Component/Square';
+import Square from '../components/square';
 
 const Payment = () => {
 
-
+  const [isLoad, setLoad] = useState(false);
 
 useEffect(() => {
     let sqPaymentScript = document.createElement("script");
@@ -19,10 +19,17 @@ useEffect(() => {
   });
 
   const squarePayment = isLoad ? (
-        <Square paymentForm={ window.SqPaymentForm }/>
-    ) : (
-       null
-    )
+    <Square paymentForm={ window.SqPaymentForm }/>
+) : (
+   null
+)
+
+return (
+<div className="App">
+    <h1>Square</h1>
+   {squarePayment}
+</div>
+);
 }
 
 export default Payment;

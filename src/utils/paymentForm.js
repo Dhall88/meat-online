@@ -5,13 +5,15 @@ const uuidv4 = () => {
   });
 }
 
-const idempotency_key = uuidv4();
+const idempotencyKey = uuidv4();
+console.log(idempotencyKey)
 
 const config = {
     // Initialize the payment form elements
     
     //TODO: Replace with your sandbox application ID
-    applicationId: process.env.REACT_APP_APLLICATION_ID,
+    applicationId: process.env.REACT_APP_ID,
+    // applicationId: 'sandbox-sq0idb--69yZknzwLpvVaSUVUOLMg',
     inputClass: 'sq-input',
     autoBuild: false,
     // Customize the CSS for SqPaymentForm iframe elements
@@ -55,7 +57,6 @@ const config = {
             alert('Encountered errors, check browser developer console for more details');
             return;
         }
-           //alert(`The generated nonce is:\n${nonce}`);
            fetch('http://localhost:3000/process-payment', {
               method: 'POST',
               headers: {
@@ -64,8 +65,8 @@ const config = {
               },
               body: JSON.stringify({
                 nonce: nonce,
-                idempotency_key: idempotency_key,
-                location_id: env.process.REACT_APP_LOCATION_ID
+                idempotencyKey: idempotencyKey,
+                locationId: process.env.REACT_APP_LOCATION_ID
               })
             })
             .catch(err => {

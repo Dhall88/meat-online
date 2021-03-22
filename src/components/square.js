@@ -1,5 +1,5 @@
 import React from 'react';
-import config from '../Utils/paymentForm';
+import config from '../utils/paymentForm';
 
 const Square = ({ paymentForm }) => {
 
