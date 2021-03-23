@@ -12,7 +12,7 @@ const initialState = {
 const reducer = (state, action) => {
   console.log(action.payload)
   switch (action.type) {
-    case "SET_CATAGORY":
+    case "SET_CATEGORY":
       return {
         category: action.payload
       };
