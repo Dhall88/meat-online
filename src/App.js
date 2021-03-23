@@ -10,14 +10,22 @@ import ProductView from './views/productView';
 import Payment from './views/payment'
 import "./App.css";
 import { ActiveProductContext } from "./context/activeProductContext";
+import { CategoryContext } from "./context/categoryContext"
 
 const App = () => {
 
-  const [category, setCategory] = useState('')
+  const [categoryState, categoryDispatch] = useContext(CategoryContext)
   const [activeProductState, activeProductDispatch] = useContext(ActiveProductContext);
   const [isLoad, setLoad] = useState(false);
 
   // console.log(activeProductState.activeProduct.name)
+
+  const setCategory = (category) => {
+    categoryDispatch({
+      type: "SET_CATEGORY",
+      payload: category
+    })
+  }
 
 
 
@@ -52,7 +60,7 @@ const App = () => {
     <Dropdown.Item href="#/steak" onClick = {() => setCategory("steak")}>Steak
 
     </Dropdown.Item>
-    <Dropdown.Item href="#/hotdog" onClick ={() => setCategory("hotdog")}>Hotdog</Dropdown.Item>
+    <Dropdown.Item href="#/beef" onClick ={() => setCategory("beef")}>Hotdog</Dropdown.Item>
   </Dropdown.Menu>
 </Dropdown>
 
@@ -74,10 +82,10 @@ const App = () => {
             </header>
             <Route path="/" exact component={Home} />
             <Route path="/wholesale" exact component={Wholesale} />
-            <Route path= {`/${category}`} exact component={() => Products(category)} />
+            <Route path= {`/${categoryState.category}`} exact component={Products} />
             <Route path="/about" exact component={About}/>
             <Route path="/cart" exact component={Cart}/>
-            <Route path= {`/${category}/${activeProductState.activeProduct.name}`} exact component={() => ProductView(activeProductState.activeProduct)} />
+            <Route path= {`/${categoryState.category}/${activeProductState.activeProduct.name}`} exact component={() => ProductView(activeProductState.activeProduct)} />
             <Route path="/payment" exact component={Payment} />
 
         </HashRouter>

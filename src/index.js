@@ -7,6 +7,7 @@ import { CartContextProvider } from "./context/cartContext";
 import { ProductContextProvider } from "./context/productContext";
 import { PaginationContextProvider } from "./context/paginationContext";
 import { ActiveProductContextProvider} from "./context/activeProductContext";
+import { CategoryContextProvider } from "./context/categoryContext";
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 ReactDOM.render(
@@ -14,7 +15,9 @@ ReactDOM.render(
     <CartContextProvider>
       <ProductContextProvider>
         <ActiveProductContextProvider>
-          <App />
+          <CategoryContextProvider>
+            <App />
+          </CategoryContextProvider>
         </ActiveProductContextProvider>
       </ProductContextProvider>
     </CartContextProvider>

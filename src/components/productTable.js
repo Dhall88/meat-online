@@ -8,18 +8,20 @@ import {ActiveProductContext} from '../context/activeProductContext';
 import {CategoryContext} from '../context/categoryContext';
 
 
-const ProductTable = (props) => {
+const ProductTable = () => {
 
     const [productState, productDispatch] = useContext(ProductContext);
     const [paginationState, paginationDispatch] = useContext(PaginationContext);
     const [activeProductState, activeProductDispatch] = useContext(ActiveProductContext);
+    const [categoryState, categoryDispatch] = useContext(CategoryContext);
     // const [categoryState, categoryDispatch] = useContext(CategoryContext)
 
     const link = `${process.env.PUBLIC_URL}/assets/imgs/`
 
 
     useEffect(() => {
-        fetch(`http://localhost:3000/api/meats/${props.category}`)
+        console.log(categoryState.category)
+        fetch(`http://localhost:3000/api/meats/${categoryState.category}`)
         .then(data => data.json())
         .then(json => {
             productDispatch({
@@ -27,7 +29,7 @@ const ProductTable = (props) => {
                 payload: json
             })
         })
-    },[]);
+    },[categoryState]);
 
     // console.log(categoryState)
 
@@ -38,7 +40,7 @@ const ProductTable = (props) => {
         let result = arr.map((product,index) => {
         
                 return  <Col>
-                            <LinkContainer to = {`/${props.category}/${product.name}`} onClick={() => activeProductDispatch({
+                            <LinkContainer to = {`/${categoryState.category}/${product.name}`} onClick={() => activeProductDispatch({
                                                                                     type: 'SET_PRODUCT',
                                                                                     payload: product})}>
                                 <Container>

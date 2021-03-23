@@ -1,26 +1,27 @@
+
 import {Container} from 'react-bootstrap';
 import Aside from '../components/aside';
 import SortingHeader from '../components/sortingHeader';
 import ProductTable from '../components/productTable';
 import PaginationButtons from '../components/pagination';
-import {PaginationContextProvider} from '../context/paginationContext'
+import {PaginationContextProvider} from '../context/paginationContext';
 
-const Products = (props) => {
 
-    console.log(props)
+const Products = () => {
+
     return (
         <PaginationContextProvider>
-            {/* <Container>
+            <Container>
                 <Aside/>
             </Container>
-            <Container>
+            {/* <Container>
                 <SortingHeader/>
             </Container> */}
             <Container>
-                <ProductTable category = {props}/>
+                <ProductTable/>
             </Container>
             <Container>
-                <PaginationButtons category = {props}/>
+                <PaginationButtons/>
             </Container>
         </PaginationContextProvider>
     )
