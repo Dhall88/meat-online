@@ -32,11 +32,21 @@ const App = () => {
 
 	return (
 		<>
+      <style type="text/css">
+    {`
+    .btn-custom {
+      color: #007bff;
+      padding: 1rem;
+      font-size: 2rem;
+      border: 0;
+    }
+    `}
+  </style>
 
-        <h1>Virgia Meats</h1>
           <HashRouter>
-            <header>
-              <nav>
+            <header className="d-flex justify-content-between">
+        <h1>Matt's Meats</h1>
+              <nav className="d-flex">
                 <NavLink
                   className='navlink'
                   exact
@@ -52,17 +62,17 @@ const App = () => {
                   Wholesale
                 </NavLink>
                 <Dropdown>
-  <Dropdown.Toggle variant="success" id="dropdown-basic">
-    Dropdown Button
-  </Dropdown.Toggle>
+                  <Dropdown.Toggle variant="custom" id="dropdown-basic">
+                    Products
+                  </Dropdown.Toggle >
 
-  <Dropdown.Menu>
-    <Dropdown.Item href="#/steak" onClick = {() => setCategory("steak")}>Steak
+                  <Dropdown.Menu>
+                    <Dropdown.Item href="#/steak" onClick = {() => setCategory("steak")}>Steak
 
-    </Dropdown.Item>
-    <Dropdown.Item href="#/beef" onClick ={() => setCategory("beef")}>Hotdog</Dropdown.Item>
-  </Dropdown.Menu>
-</Dropdown>
+                    </Dropdown.Item>
+                    <Dropdown.Item href="#/beef" onClick ={() => setCategory("beef")}>Hotdog</Dropdown.Item>
+                  </Dropdown.Menu>
+                </Dropdown>
 
                 <NavLink
                   className='navlink'
@@ -86,7 +96,7 @@ const App = () => {
             <Route path="/about" exact component={About}/>
             <Route path="/cart" exact component={Cart}/>
             <Route path= {`/${categoryState.category}/${activeProductState.activeProduct.name}`} exact component={() => ProductView(activeProductState.activeProduct)} />
-            <Route path="/payment" exact component={Payment} />
+            <Route path="/checkout" exact component={Payment} />
 
         </HashRouter>
         <footer>

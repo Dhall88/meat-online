@@ -3,7 +3,7 @@ import React, { useReducer, createContext } from "react";
 export const CategoryContext = createContext();
 
 const initialState = {
-  category: '',
+  category: 'steak',
   loading: false,
   error: null
 };

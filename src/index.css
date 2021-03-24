@@ -11,3 +11,24 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+/* dropdown-custom {
+  background-color: green;
+  color: #007bff;
+  padding: 1rem;
+  line-height: 0;
+
+}
+
+btn-custom {
+  padding: 1rem;
+  border: 0;
+  color: #007bff;
+  background-color: green
+} */
+
+a {
+  padding: 1rem;
+  line-height: 1.49;
+  font-size: 2rem;
+}

@@ -1,5 +1,6 @@
 import {useContext} from 'react'
 import {Container, Row, Col, Image, Button} from 'react-bootstrap';
+import {LinkContainer} from 'react-router-bootstrap'
 import Aside from '../components/aside';
 import SortingHeader from '../components/sortingHeader';
 import ProductTable from '../components/productTable';
@@ -66,6 +67,7 @@ const Cart = () => {
     return (
         <Container>
             {cart}
+            <LinkContainer to="/checkout"><Button>Checkout</Button></LinkContainer>
         </Container>
     )
 }

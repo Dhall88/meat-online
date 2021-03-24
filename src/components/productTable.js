@@ -6,30 +6,32 @@ import {ProductContext} from '../context/productContext';
 import {PaginationContext} from '../context/paginationContext';
 import {ActiveProductContext} from '../context/activeProductContext';
 import {CategoryContext} from '../context/categoryContext';
+import { SortingContext } from '../context/sortingContext';
 
 
 const ProductTable = () => {
 
-    const [productState, productDispatch] = useContext(ProductContext);
+    // const [productState, productDispatch] = useContext(ProductContext);
+    const [productState, setProducts] = useState([]);
     const [paginationState, paginationDispatch] = useContext(PaginationContext);
     const [activeProductState, activeProductDispatch] = useContext(ActiveProductContext);
     const [categoryState, categoryDispatch] = useContext(CategoryContext);
+    const [sortingState, sortingDispatch] = useContext(SortingContext);
     // const [categoryState, categoryDispatch] = useContext(CategoryContext)
+   
 
     const link = `${process.env.PUBLIC_URL}/assets/imgs/`
 
 
     useEffect(() => {
         console.log(categoryState.category)
-        fetch(`http://localhost:3000/api/meats/${categoryState.category}`)
+        fetch(`http://localhost:3000/api/meats/${categoryState.category}?sorting=${sortingState.sorting}`)
         .then(data => data.json())
         .then(json => {
-            productDispatch({
-                type: 'ADD_PRODUCTS',
-                payload: json
-            })
+            console.log(json)
+            setProducts(json)
         })
-    },[categoryState]);
+    },[categoryState, sortingState]);
 
     // console.log(categoryState)
 
@@ -68,13 +70,13 @@ const ProductTable = () => {
         return (
             <Container>
                 <Row>
-                    {buildRow(productState.products.slice(pagScale, pagScale+3))}
+                    {buildRow(productState.slice(pagScale, pagScale+3))}
                 </Row>
                 <Row>
-                    {buildRow(productState.products.slice(pagScale+3, pagScale+6))}
+                    {buildRow(productState.slice(pagScale+3, pagScale+6))}
                 </Row>
                 <Row>
-                    {buildRow(productState.products.slice(pagScale+6, pagScale+9))}
+                    {buildRow(productState.slice(pagScale+6, pagScale+9))}
                 </Row>
             </Container>
         )

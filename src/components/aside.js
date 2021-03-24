@@ -19,13 +19,13 @@ const Cart = () => {
             <uo>
                 <LinkContainer to={`/steak`} onClick={() => categoryDispatch({
                                                                 type: 'SET_CATEGORY',
-                                                                payload: 'steak'
+                                                                payload: {category: 'steak', sorting: ''}
                                                                 })}
                     ><li>Steak</li>
                 </LinkContainer>
                 <LinkContainer to={`/beef`} onClick={() => categoryDispatch({
                                                                 type: 'SET_CATEGORY',
-                                                                payload: 'beef'
+                                                                payload: {category: 'beef', sorting: ''}
                                                                 })}
                     ><li>Hotdog</li>
                 </LinkContainer>
