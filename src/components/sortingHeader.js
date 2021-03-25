@@ -11,7 +11,7 @@ import { SortingContext } from '../context/sortingContext';
 
 const SortingHeader = () => {
 
-    const [categoryState, categoryDispatch] = useContext(CategoryContext);
+
     const [sortingState, sortingDispatch] = useContext(SortingContext);
 
 

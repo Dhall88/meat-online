@@ -12,7 +12,6 @@ const Products = () => {
 
     return (
         <PaginationContextProvider>
-            <SortingContextProvider>
             <Container fluid>
                 <Row>
                     <Col md='auto'>
@@ -36,7 +35,6 @@ const Products = () => {
 
                 </Col>
             </Container>
-            </SortingContextProvider>
         </PaginationContextProvider>
     )
 }

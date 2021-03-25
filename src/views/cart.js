@@ -15,7 +15,7 @@ const Cart = () => {
     const [activeProductState, activeProductDispatch] = useContext(ActiveProductContext)
     const [cartState, cartDispatch] = useContext(CartContext);
 
-    console.log(cartState)
+    console.log(cartState.products)
 
     const buildTable = () => {
         const products = cartState.products.map((product, index) => {

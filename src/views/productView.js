@@ -6,44 +6,50 @@ import ProductTable from '../components/productTable';
 import PaginationButtons from '../components/pagination';
 import {ActiveProductContext} from '../context/activeProductContext';
 import {CartContext} from '../context/cartContext';
+import Cookies from 'universal-cookie'
 
-const ProductView = (props) => {
+const ProductView = () => {
 
     const link = `${process.env.PUBLIC_URL}/assets/imgs/`
-
-    console.log(props)
 
     const [activeProductState, activeProductDispatch] = useContext(ActiveProductContext);
     const [cartState, cartDispatch] = useContext(CartContext);
     const [quantity, setQuantity] = useState(1);
 
+    console.log(activeProductState.activeProduct)
+
     const onSubmit = () => {
-        const product = props;
+        const product = activeProductState.activeProduct;
         product['quantity'] = quantity
         cartDispatch({
             type: 'ADD_PRODUCT',
             payload: product
         })
-    }
+        
+//             const cookies = new Cookies();
 
-    console.log(quantity)
+// cookies.set('cartState', 'test', { path: '/' });
+
+// console.log(cookies.get('cartState'))
+       
+    }
 
 
     return (
         <Container>
             <Row>
                 <Col>
-                    <Image src={`${link}${props.pictures[0]}`} />
+                    <Image src={`${link}${activeProductState.activeProduct.pictures[0]}`} />
                 </Col>
                 <Col>
                     <Row>
-                        <h3>{props.name}</h3>
+                        <h3>{activeProductState.activeProduct.name}</h3>
                     </Row>
                     <Row>
-                        <h1>{props.price} per {props.unit}</h1>
+                        <h1>{activeProductState.activeProduct.price} per {activeProductState.activeProduct.unit}</h1>
                     </Row>
                     <Row>
-                        <h4>{props.description}</h4>
+                        <h4>{activeProductState.activeProduct.description}</h4>
                     </Row>
                     <Form onSubmit={onSubmit}>
                         <Form.Group controlId="quantity">

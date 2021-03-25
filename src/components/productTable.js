@@ -15,25 +15,26 @@ const ProductTable = () => {
     const [productState, setProducts] = useState([]);
     const [paginationState, paginationDispatch] = useContext(PaginationContext);
     const [activeProductState, activeProductDispatch] = useContext(ActiveProductContext);
-    const [categoryState, categoryDispatch] = useContext(CategoryContext);
     const [sortingState, sortingDispatch] = useContext(SortingContext);
-    // const [categoryState, categoryDispatch] = useContext(CategoryContext)
+    // const [sortingState, categoryDispatch] = useContext(CategoryContext)
    
 
     const link = `${process.env.PUBLIC_URL}/assets/imgs/`
+    
+    console.log(sortingState)
 
 
     useEffect(() => {
-        console.log(categoryState.category)
-        fetch(`http://localhost:3000/api/meats/${categoryState.category}?sorting=${sortingState.sorting}`)
+        // console.log(sortingState.category)
+        fetch(`http://localhost:3000/api/meats/${sortingState.category}?sorting=${sortingState.sorting}`)
         .then(data => data.json())
         .then(json => {
             console.log(json)
             setProducts(json)
         })
-    },[categoryState, sortingState]);
+    },[sortingState]);
 
-    // console.log(categoryState)
+    // console.log(sortingState)
 
     const buildRow = (arr) => {
 
@@ -42,7 +43,7 @@ const ProductTable = () => {
         let result = arr.map((product,index) => {
         
                 return  <Col>
-                            <LinkContainer to = {`/${categoryState.category}/${product.name}`} onClick={() => activeProductDispatch({
+                            <LinkContainer to = {`/products/${sortingState.category}/${product.name}`} onClick={() => activeProductDispatch({
                                                                                     type: 'SET_PRODUCT',
                                                                                     payload: product})}>
                                 <Container>
@@ -61,7 +62,7 @@ const ProductTable = () => {
         return result;
     }
 
-    const buildTable = (index) => {
+    const buildTable = () => {
 
         const pagScale = (paginationState.pagination-1)*9;
 

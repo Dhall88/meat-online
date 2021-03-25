@@ -6,26 +6,26 @@ import ProductTable from '../components/productTable';
 import PaginationButtons from '../components/pagination';
 import {ActiveProductContext} from '../context/activeProductContext';
 import {CartContext} from '../context/cartContext';
-import { CategoryContext } from '../context/categoryContext';
+import { SortingContext } from '../context/sortingContext';
 
 const Cart = () => {
 
-    const [categoryState, categoryDispatch] = useContext(CategoryContext);
+    const [sortingState, sortingDispatch] = useContext(SortingContext);
 
 
     return (
         <Container>
             <h1>Products</h1>
             <uo>
-                <LinkContainer to={`/steak`} onClick={() => categoryDispatch({
+                <LinkContainer to={`/products/steak`} onClick={() => sortingDispatch({
                                                                 type: 'SET_CATEGORY',
-                                                                payload: {category: 'steak', sorting: ''}
+                                                                payload: 'steak'
                                                                 })}
                     ><li>Steak</li>
                 </LinkContainer>
-                <LinkContainer to={`/beef`} onClick={() => categoryDispatch({
+                <LinkContainer to={`/products/beef`} onClick={() => sortingDispatch({
                                                                 type: 'SET_CATEGORY',
-                                                                payload: {category: 'beef', sorting: ''}
+                                                                payload: 'beef'
                                                                 })}
                     ><li>Hotdog</li>
                 </LinkContainer>

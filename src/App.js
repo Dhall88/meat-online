@@ -1,5 +1,5 @@
 import React, { useContext, useState, useEffect } from "react";
-import { HashRouter, NavLink, Route } from 'react-router-dom';
+import { HashRouter, NavLink, Route, Switch } from 'react-router-dom';
 import {Dropdown} from 'react-bootstrap'
 import Home from './views/home';
 import Wholesale from './views/wholesale';
@@ -10,23 +10,15 @@ import ProductView from './views/productView';
 import Payment from './views/payment'
 import "./App.css";
 import { ActiveProductContext } from "./context/activeProductContext";
-import { CategoryContext } from "./context/categoryContext"
+import { SortingContext } from "./context/sortingContext"
 
 const App = () => {
 
-  const [categoryState, categoryDispatch] = useContext(CategoryContext)
+  const [sortingState, sortingDispatch] = useContext(SortingContext)
   const [activeProductState, activeProductDispatch] = useContext(ActiveProductContext);
   const [isLoad, setLoad] = useState(false);
 
   // console.log(activeProductState.activeProduct.name)
-
-  const setCategory = (category) => {
-    categoryDispatch({
-      type: "SET_CATEGORY",
-      payload: category
-    })
-  }
-
 
 
 
@@ -67,10 +59,17 @@ const App = () => {
                   </Dropdown.Toggle >
 
                   <Dropdown.Menu>
-                    <Dropdown.Item href="#/steak" onClick = {() => setCategory("steak")}>Steak
+                    <Dropdown.Item href="#/products/steak" onClick = {() => sortingDispatch({
+                                                                                  type: "SET_CATEGORY",
+                                                                                  payload: "steak"
+                    })}>Steak
 
                     </Dropdown.Item>
-                    <Dropdown.Item href="#/beef" onClick ={() => setCategory("beef")}>Hotdog</Dropdown.Item>
+                    <Dropdown.Item href="#/products/beef" onClick ={() => sortingDispatch({
+                                                                type: "SET_CATEGORY",
+                                                                payload: "beef"
+                                                                })}
+                    >Hotdog</Dropdown.Item>
                   </Dropdown.Menu>
                 </Dropdown>
 
@@ -92,11 +91,13 @@ const App = () => {
             </header>
             <Route path="/" exact component={Home} />
             <Route path="/wholesale" exact component={Wholesale} />
-            <Route path= {`/${categoryState.category}`} exact component={Products} />
             <Route path="/about" exact component={About}/>
             <Route path="/cart" exact component={Cart}/>
-            <Route path= {`/${categoryState.category}/${activeProductState.activeProduct.name}`} exact component={() => ProductView(activeProductState.activeProduct)} />
             <Route path="/checkout" exact component={Payment} />
+            <Switch>
+              <Route path= {`/products/${sortingState.category}/${activeProductState.activeProduct.name}`} exact component={ProductView} />
+              <Route path= {`/products/`}  component={Products} />
+            </Switch>
 
         </HashRouter>
         <footer>
