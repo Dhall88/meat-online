@@ -22,10 +22,7 @@ const reducer = (state, action) => {
                     sorting: action.payload
         }
         cookies.set('sortingState', result, { path: '/' });
-      return {
-          result
-
-      };
+      return result
     case "SET_CATEGORY":
         
         result = {category: action.payload,
@@ -33,9 +30,7 @@ const reducer = (state, action) => {
 }
 
 cookies.set('sortingState', result, { path: '/' });
-return (
-    result
-);
+return result
       
     case "START":
       return {

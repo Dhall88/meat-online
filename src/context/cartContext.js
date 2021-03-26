@@ -16,15 +16,24 @@ const initialState = {
 
 
 console.log("in cart context")
-let result;
+let result, existingItem;
 
 const reducer = (state, action) => {
   console.log(action.payload)
   switch (action.type) {
     case "ADD_PRODUCT":
+      let existingItemIndex = state.products.findIndex((product) => {
+          return product._id === action.payload._id
+      }) 
+      console.log(existingItemIndex)
+      if(existingItemIndex !== -1) {
+        console.log('in if')
+        state.products[existingItemIndex].quantity++;
+        result = state.products
+      } else {
+        result = [...state.products, action.payload]
 
-      
-      result = [...state.products, action.payload]
+      }
       cookies.set('cartState', result, { path: '/' });
       return {
         products: result
@@ -39,6 +48,20 @@ const reducer = (state, action) => {
       return {
         products: result
       };
+    case "UPDATE_QUANTITY":
+      console.log("in update quanitty")
+      result = state.products.map((product) => {
+        console.log("in map")
+          if(product._id === action.payload.product._id) {
+            // console.log(product.payload.quantity)
+            product.quantity = action.payload.quantity;
+          }
+          return product;
+      })
+      cookies.set('cartState',result, {path:'/'})
+      return {
+        products: result
+      }
     case "START":
       return {
         loading: true

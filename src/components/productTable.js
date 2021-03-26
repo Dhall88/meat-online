@@ -42,7 +42,7 @@ const ProductTable = () => {
 
         let result = arr.map((product,index) => {
         
-                return  <Col>
+                return  <Col xs={6} md={4}>
                             <LinkContainer to = {`/products/${sortingState.category}/${product.name}`} onClick={() => activeProductDispatch({
                                                                                     type: 'SET_PRODUCT',
                                                                                     payload: product})}>
@@ -50,8 +50,11 @@ const ProductTable = () => {
                                 <Image src={`${link}${product.pictures[0]}`} thumbnail /> 
                                     <Row>
                                         <Col><h4>{product.name}</h4></Col>
-                                        <Col><h4>{product.price}</h4></Col>
+                                        
                                     </Row> 
+                                    <Row>
+                                    <Col><h4>{product.price}</h4></Col>
+                                    </Row>
                                     </Container>                       
                             </LinkContainer>
                         </Col>
@@ -71,14 +74,14 @@ const ProductTable = () => {
         return (
             <Container>
                 <Row>
-                    {buildRow(productState.slice(pagScale, pagScale+3))}
+                    {buildRow(productState.slice(pagScale, pagScale+9))}
                 </Row>
-                <Row>
+                {/* <Row>
                     {buildRow(productState.slice(pagScale+3, pagScale+6))}
                 </Row>
                 <Row>
                     {buildRow(productState.slice(pagScale+6, pagScale+9))}
-                </Row>
+                </Row> */}
             </Container>
         )
 

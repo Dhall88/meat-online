@@ -15,21 +15,27 @@ const Cart = () => {
 
     return (
         <Container>
-            <h1>Products</h1>
-            <uo>
+            <h1 className="category-header">Products</h1>
+            <Container>
+                <Row>
+                    <Col xs={4} md={12}>
                 <LinkContainer to={`/products/steak`} onClick={() => sortingDispatch({
                                                                 type: 'SET_CATEGORY',
                                                                 payload: 'steak'
                                                                 })}
-                    ><li>Steak</li>
+                    ><a className="category">Steak</a>
                 </LinkContainer>
+                </Col>
+                <Col xs={4} md={12}>
                 <LinkContainer to={`/products/beef`} onClick={() => sortingDispatch({
                                                                 type: 'SET_CATEGORY',
                                                                 payload: 'beef'
                                                                 })}
-                    ><li>Hotdog</li>
+                    ><a className="category">Hotdog</a>
                 </LinkContainer>
-            </uo>
+                </Col>
+                </Row>
+            </Container>
         </Container>
     )
 }

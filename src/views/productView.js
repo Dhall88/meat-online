@@ -36,10 +36,10 @@ const ProductView = () => {
 
 
     return (
-        <Container>
+        <Container fluid>
             <Row>
-                <Col>
-                    <Image src={`${link}${activeProductState.activeProduct.pictures[0]}`} />
+                <Col xs={{span:5, offset: 1}} md={{span:5, offset: 1}} lg={{span:5, offset: 1}}>
+                    <Image src={`${link}${activeProductState.activeProduct.pictures[0]}`} fluid />
                 </Col>
                 <Col>
                     <Row>
@@ -53,7 +53,7 @@ const ProductView = () => {
                     </Row>
                     <Form onSubmit={onSubmit}>
                         <Form.Group controlId="quantity">
-                            <Form.Control type="number" value={quantity} onChange = {e => setQuantity(e.target.value)} />
+                            <Form.Control id="quantity-input" type="number" value={quantity} onChange = {e => setQuantity(e.target.value)} />
                         </Form.Group>
                         <Button type="submit">Add to Card</Button>
                     </Form>

@@ -12,6 +12,7 @@ const Products = () => {
 
     return (
         <PaginationContextProvider>
+            <div className="product">
             <Container fluid>
                 <Row>
                     <Col md='auto'>
@@ -35,6 +36,7 @@ const Products = () => {
 
                 </Col>
             </Container>
+            </div>
         </PaginationContextProvider>
     )
 }

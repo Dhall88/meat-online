@@ -11,16 +11,24 @@ import Payment from './views/payment'
 import "./App.css";
 import { ActiveProductContext } from "./context/activeProductContext";
 import { SortingContext } from "./context/sortingContext"
+import { CartContext } from "./context/cartContext"
 
 const App = () => {
 
   const [sortingState, sortingDispatch] = useContext(SortingContext)
   const [activeProductState, activeProductDispatch] = useContext(ActiveProductContext);
   const [isLoad, setLoad] = useState(false);
+  const [cartState, cartDisptach] = useContext(CartContext)
 
   // console.log(activeProductState.activeProduct.name)
 
-
+  const cartCount = () => {
+    let itemCount = 0;
+    for(let i = 0; i<cartState.products.length; i++) {
+      itemCount += parseInt(cartState.products[i].quantity)
+    }
+    return itemCount;
+  }
 
 	return (
 		<>
@@ -32,12 +40,17 @@ const App = () => {
       font-size: 2rem;
       border: 0;
     }
+
+    .btn-custom:hover {
+      color: #0056b3;
+      text-decoration: underline;
+    }
     `}
   </style>
 
           <HashRouter>
             <header className="d-flex justify-content-between">
-        <h1>Matt's Meats</h1>
+                <h1>Quality Local Meats</h1>
               <nav className="d-flex">
                 <NavLink
                   className='navlink'
@@ -81,11 +94,11 @@ const App = () => {
                   About Us
                 </NavLink>
                 <NavLink
-                  className='navlink'
+                  className='navlink cart-nav'
                 exact
                 to="/cart"
                 >
-                Cart
+                Cart <div className = "cart-count">{cartCount()}</div>
                 </NavLink>
               </nav>
             </header>

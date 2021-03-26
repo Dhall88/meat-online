@@ -18,10 +18,11 @@ const config = {
     autoBuild: false,
     // Customize the CSS for SqPaymentForm iframe elements
     inputStyles: [{
-        fontSize: '16px',
+        fontSize: '25px',
+        color: '#ffffff',
         lineHeight: '24px',
         padding: '16px',
-        placeholderColor: '#a0a0a0',
+        placeholderColor: '#f2f2f2',
         backgroundColor: 'transparent',
     }],
     // Initialize the credit card placeholders
