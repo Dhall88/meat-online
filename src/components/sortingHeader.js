@@ -24,20 +24,20 @@ const SortingHeader = () => {
 
             <Dropdown.Menu>
                 <Dropdown.Item onClick={() => sortingDispatch({
-                                                        type: 'SET_SORTING',
-                                                        payload: ''})}>
+                                                        type: 'SET_CATEGORY',
+                                                        payload: {sorting: ''}})}>
                 Default</Dropdown.Item>
                 <Dropdown.Item onClick={() => sortingDispatch({
-                                                        type: 'SET_SORTING',
-                                                        payload: '-price'})}>
+                                                        type: 'SET_CATEGORY',
+                                                        payload: {sorting: '-price'}})}>
                 Price: High to Low</Dropdown.Item>
                 <Dropdown.Item onClick={() => sortingDispatch({
-                                                        type: 'SET_SORTING',
-                                                        payload: 'price'})}>
+                                                        type: 'SET_CATEGORY',
+                                                        payload: {sorting: 'price'}})}>
                 Price: Low to High</Dropdown.Item>
                 <Dropdown.Item onClick={() => sortingDispatch({
-                                                        type: 'SET_SORTING',
-                                                        payload: 'popularity'})}>
+                                                        type: 'SET_CATEGORY',
+                                                        payload: {sorting: 'popularity'}})}>
                 Popularity</Dropdown.Item>
             </Dropdown.Menu>
             </Dropdown>

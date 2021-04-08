@@ -6,7 +6,8 @@ const SignIn = () => {
     const [pass, setPass] = useState('')
 
     const onSubmit = async() => {
-        console.log("in submit")
+        console.log(email)
+        console.log(pass)
         const response = await fetch(`http://localhost:3000/api/users/login`, {
             method: 'POST', // *GET, POST, PUT, DELETE, etc.
             mode: 'cors', // no-cors, *cors, same-origin
@@ -20,7 +21,7 @@ const SignIn = () => {
             // referrerPolicy: 'no-referrer', // no-referrer, *no-referrer-when-downgrade, origin, origin-when-cross-origin, same-origin, strict-origin, strict-origin-when-cross-origin, unsafe-url
             body: JSON.stringify({username: email, password: pass}) // body data type must match "Content-Type" header
           });
-          console.log(response.json()); // parses JSON response into native JavaScript objects
+        //   console.log(response.json()); // parses JSON response into native JavaScript objects
 
     }
     

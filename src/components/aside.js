@@ -20,16 +20,18 @@ const Cart = () => {
                 <Row>
                     <Col xs={4} md={12}>
                 <LinkContainer to={`/products/steak`} onClick={() => sortingDispatch({
-                                                                type: 'SET_CATEGORY',
-                                                                payload: 'steak'
+                                                                type: "SET_CATEGORY",
+                                                                payload: {category:"steak",
+                                                                        sorting:""}
                                                                 })}
                     ><a className="category">Steak</a>
                 </LinkContainer>
                 </Col>
                 <Col xs={4} md={12}>
                 <LinkContainer to={`/products/beef`} onClick={() => sortingDispatch({
-                                                                type: 'SET_CATEGORY',
-                                                                payload: 'beef'
+                                                                type: "SET_CATEGORY",
+                                                                payload: {category: "beef",
+                                                                          sorting:""}
                                                                 })}
                     ><a className="category">Hotdog</a>
                 </LinkContainer>
