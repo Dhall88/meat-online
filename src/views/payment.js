@@ -5,6 +5,8 @@ const Payment = () => {
 
   const [isLoad, setLoad] = useState(false);
 
+  console.log('in payment')
+
 useEffect(() => {
     let sqPaymentScript = document.createElement("script");
     // sandbox: https://js.squareupsandbox.com/v2/paymentform

@@ -16,18 +16,22 @@ let result;
 
 
 const reducer = (state, action) => {
+  console.log(!action.payload.category)
   switch (action.type) {
-    case "SET_SORTING":
-        result = {category: state.category,
-                    sorting: action.payload
-        }
-        cookies.set('sortingState', result, { path: '/' });
-      return result
     case "SET_CATEGORY":
+      console.log('in set category')
+        if(!action.payload.category){
+          console.log('in if')
+        result =  {category: state.category,
+                  sorting: action.payload.sorting
+                  }
+        }
         
-        result = {category: action.payload,
-                sorting: state.sorting
-}
+        else {
+          console.log('in else')
+          result = {category: action.payload.category,
+                  sorting: action.payload.sorting}
+        }
 
 cookies.set('sortingState', result, { path: '/' });
 return result
@@ -41,7 +45,7 @@ return result
         loading: false
       };
     default:
-      throw new Error();
+      console.log(new Error());
   }
 };
 

@@ -27,10 +27,16 @@ btn-custom {
   background-color: green
 } */
 
-a {
+.navlink {
   padding: 1rem;
   line-height: 1.49;
   font-size: 2rem;
+  color: white;
+}
+
+.navlink:hover {
+  color: rgb(211, 212, 216);
+  text-decoration: none;
 }
 
 #form-container {
@@ -86,8 +92,8 @@ a {
 }
 
 .cart-count {
-  background-color: grey;
-  color: black;
+  background-color: white;
+  color: rgb(96, 128, 218);
   border-radius: 50%;
   position: absolute;
   width: 20%;
@@ -103,4 +109,12 @@ a {
   position: relative;
   display: block;
 
+}
+
+header {
+  background-color: rgb(96, 128, 218);
+}
+
+h1 {
+  color: white;
 }

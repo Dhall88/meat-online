@@ -35,15 +35,22 @@ const App = () => {
       <style type="text/css">
     {`
     .btn-custom {
-      color: #007bff;
+      color: #ffffff;
       padding: 1rem;
       font-size: 2rem;
       border: 0;
     }
 
     .btn-custom:hover {
-      color: #0056b3;
-      text-decoration: underline;
+      color: rgb(211, 212, 216);
+    }
+
+    .dropdown-menu {
+      background-color: rgb(96, 128, 218);
+    }
+
+    .dropdown-item {
+      color: white;
     }
     `}
   </style>
@@ -74,13 +81,15 @@ const App = () => {
                   <Dropdown.Menu>
                     <Dropdown.Item href="#/products/steak" onClick = {() => sortingDispatch({
                                                                                   type: "SET_CATEGORY",
-                                                                                  payload: "steak"
+                                                                                  payload: {category:"steak",
+                                                                                            sorting:""}
                     })}>Steak
 
                     </Dropdown.Item>
                     <Dropdown.Item href="#/products/beef" onClick ={() => sortingDispatch({
                                                                 type: "SET_CATEGORY",
-                                                                payload: "beef"
+                                                                payload: {category: "beef",
+                                                                          sorting:""}
                                                                 })}
                     >Hotdog</Dropdown.Item>
                   </Dropdown.Menu>

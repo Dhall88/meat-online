@@ -25,9 +25,9 @@ const reducer = (state, action) => {
       let existingItemIndex = state.products.findIndex((product) => {
           return product._id === action.payload._id
       }) 
-      console.log(existingItemIndex)
+
       if(existingItemIndex !== -1) {
-        console.log('in if')
+
         state.products[existingItemIndex].quantity++;
         result = state.products
       } else {
