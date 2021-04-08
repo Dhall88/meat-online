@@ -1,15 +1,52 @@
-import {useState} from 'react'
+import {useState, useContext} from 'react'
 import {Jumbotron, Container, Form, Row, Col, Button} from 'react-bootstrap'
 import SignIn from '../components/signIn'
 import SignUp from '../components/signUp'
+import {UserContext} from '../context/userContext'
+import Aside from '../components/aside';
+import SortingHeader from '../components/sortingHeader';
+import ProductTable from '../components/productTable';
+import PaginationButtons from '../components/pagination';
+import {PaginationContextProvider} from '../context/paginationContext';
 
 const Wholesale = () => {
 
     const [signUp, setSignUp] = useState(false)
+
+    const [userState, userDispatch] = useContext(UserContext)
+
+    console.log(userState)
     return (
         <>
-            {/* <h2>As Fresh as Fresh Gets</h2>
-            <p>If you are looking for a bulk order please contact Matt McCascal at ###-###-####</p> */}
+            {userState.loggedIn ?
+            <PaginationContextProvider>
+            <div className="product">
+            <Container fluid>
+                <Row>
+                    <Col md='auto'>
+                        <Aside/>
+                    </Col>
+                    <Col>
+                        <Row>
+                        <SortingHeader/>
+                        </Row>
+                        <Row>
+
+                        <ProductTable/>
+                        </Row>
+                        <Row>
+
+                        <PaginationButtons/>
+                        </Row>
+                    </Col>
+                </Row>
+                <Col>
+
+                </Col>
+            </Container>
+            </div>
+        </PaginationContextProvider>
+        :
             <Container>
                 <Row>
                     <Col>
@@ -32,6 +69,7 @@ const Wholesale = () => {
                     </Col>
                 </Row>
         </Container>
+        }
 
         </>
     )

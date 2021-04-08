@@ -18,7 +18,7 @@ const App = () => {
   const [sortingState, sortingDispatch] = useContext(SortingContext)
   const [activeProductState, activeProductDispatch] = useContext(ActiveProductContext);
   const [isLoad, setLoad] = useState(false);
-  const [cartState, cartDisptach] = useContext(CartContext)
+  const [cartState, cartDispatch] = useContext(CartContext)
 
   // console.log(activeProductState.activeProduct.name)
 

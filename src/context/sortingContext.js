@@ -5,14 +5,26 @@ export const SortingContext = createContext();
 
 const cookies = new Cookies();
 
+let initialCategory, initialSorting;
+
+if(!!cookies.get("sortingState")) {
+  initialCategory=cookies.get("sortingState").category
+  initialSorting=cookies.get("sortingState").sorting
+} else {
+  initialCategory="steak"
+  initialSorting=""
+}
+
 const initialState = {
-    category: cookies.get("sortingState").category,
-  sorting: cookies.get("sortingState").sorting,
+    category: initialCategory,
+  sorting: initialSorting,
   loading: false,
   error: null
 };
 
 let result;
+
+console.log(initialState)
 
 
 const reducer = (state, action) => {

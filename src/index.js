@@ -8,6 +8,7 @@ import { ProductContextProvider } from "./context/productContext";
 import { PaginationContextProvider } from "./context/paginationContext";
 import { ActiveProductContextProvider} from "./context/activeProductContext";
 import { SortingContextProvider } from "./context/sortingContext";
+import { UserContextProvider } from "./context/userContext"
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 ReactDOM.render(
@@ -16,7 +17,10 @@ ReactDOM.render(
       <ProductContextProvider>
         <ActiveProductContextProvider>
           <SortingContextProvider>
+            <UserContextProvider>
+
             <App />
+            </UserContextProvider>
           </SortingContextProvider>
         </ActiveProductContextProvider>
       </ProductContextProvider>

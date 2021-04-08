@@ -6,8 +6,16 @@ export const CartContext = createContext();
 
 const cookies = new Cookies();
 
+let initialCart;
+
+if(!!cookies.get("cartState")) {
+  initialCart=cookies.get("cartState").products
+} else {
+  initialCart=[]
+}
+
 const initialState = {
-  products: cookies.get('cartState'),
+  products: initialCart,
   loading: false,
   error: null
 };
