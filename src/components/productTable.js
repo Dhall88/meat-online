@@ -12,10 +12,11 @@ import { SortingContext } from '../context/sortingContext';
 const ProductTable = () => {
 
     // const [productState, productDispatch] = useContext(ProductContext);
-    const [productState, setProducts] = useState([]);
+    // const [productState, setProducts] = useState([]);
     const [paginationState, paginationDispatch] = useContext(PaginationContext);
     const [activeProductState, activeProductDispatch] = useContext(ActiveProductContext);
     const [sortingState, sortingDispatch] = useContext(SortingContext);
+    const [productState, productDispatch] = useContext(ProductContext)
     // const [sortingState, categoryDispatch] = useContext(CategoryContext)
    
 
@@ -29,8 +30,10 @@ const ProductTable = () => {
         fetch(`http://localhost:3000/api/meats/${sortingState.category}?sorting=${sortingState.sorting}`)
         .then(data => data.json())
         .then(json => {
-            console.log(json)
-            setProducts(json)
+            productDispatch({
+                type: "ADD_PRODUCTS",
+                payload: json
+            })
         })
     },[sortingState]);
 
@@ -74,7 +77,7 @@ const ProductTable = () => {
         return (
             <Container>
                 <Row>
-                    {buildRow(productState.slice(pagScale, pagScale+9))}
+                    {buildRow(productState.products.slice(pagScale, pagScale+9))}
                 </Row>
                 {/* <Row>
                     {buildRow(productState.slice(pagScale+3, pagScale+6))}

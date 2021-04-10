@@ -23,13 +23,7 @@ const PaginationButtons = (props) => {
     }
 
     const buildPagination = () => {
-
-        let totalPages
-        if (!productState.filteredProducts) {
-            totalPages = Math.ceil(productState.products.length/9)
-        } else {
-            totalPages = Math.ceil(productState.filteredProducts.length/9)
-        }
+        let totalPages = Math.ceil(productState.products.length/9)
 
         let buttons = [];
         for (let i = 1; i<=totalPages; i++) {
