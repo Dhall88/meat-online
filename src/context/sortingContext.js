@@ -5,26 +5,27 @@ export const SortingContext = createContext();
 
 const cookies = new Cookies();
 
-let initialCategory, initialSorting;
+let initialCategory, initialSorting, initialSearch;
 
 if(!!cookies.get("sortingState")) {
   initialCategory=cookies.get("sortingState").category
   initialSorting=cookies.get("sortingState").sorting
+  initialSearch = cookies.get("sortingState").search
 } else {
   initialCategory="steak"
   initialSorting=""
+  initialSearch = ""
 }
 
 const initialState = {
     category: initialCategory,
   sorting: initialSorting,
+  search: "",
   loading: false,
   error: null
 };
 
 let result;
-
-console.log(initialState)
 
 
 const reducer = (state, action) => {
@@ -33,20 +34,32 @@ const reducer = (state, action) => {
     case "SET_CATEGORY":
       console.log('in set category')
         if(!action.payload.category){
-          console.log('in if')
+          
         result =  {category: state.category,
-                  sorting: action.payload.sorting
+                  sorting: action.payload.sorting,
+                  search: state.search
                   }
         }
         
         else {
           console.log('in else')
           result = {category: action.payload.category,
-                  sorting: action.payload.sorting}
+                  sorting: action.payload.sorting,
+                  search: ""
+                }
         }
 
 cookies.set('sortingState', result, { path: '/' });
-return result
+return result;
+    case "SET_SEARCH":
+      console.log("in set search")
+
+      return {
+              category: state.category,
+              sorting: state.sorting,
+              search: action.payload
+      }
+
       
     case "START":
       return {

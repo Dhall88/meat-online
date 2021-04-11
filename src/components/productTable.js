@@ -27,6 +27,16 @@ const ProductTable = () => {
 
     useEffect(() => {
         // console.log(sortingState.category)
+        if (!!sortingState.search) {
+            fetch(`http://localhost:3000/api/meats/search/${sortingState.search}?sorting=${sortingState.sorting}`)
+            .then(data => data.json())
+            .then(json => {
+                productDispatch({
+                    type: "ADD_PRODUCTS",
+                    payload: json
+                })
+        })
+    } else {
         fetch(`http://localhost:3000/api/meats/${sortingState.category}?sorting=${sortingState.sorting}`)
         .then(data => data.json())
         .then(json => {
@@ -35,6 +45,7 @@ const ProductTable = () => {
                 payload: json
             })
         })
+    }
     },[sortingState]);
 
     // console.log(sortingState)

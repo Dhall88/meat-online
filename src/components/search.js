@@ -2,23 +2,20 @@ import {useState, useContext} from 'react'
 import {Form, Button} from 'react-bootstrap';
 import {SortingContext} from '../context/sortingContext'
 import {ProductContext} from '../context/productContext'
+import {CategoryContext} from '../context/categoryContext'
 
 const Search = () => {
 
     const [search, setSearch] = useState('');
     const [sortingState, sortingDispatch] = useContext(SortingContext);
-    const [productstate, productDispatch] = useContext(ProductContext)
+    const [productstate, productDispatch] = useContext(ProductContext);
 
     const onSubmit = () => {
-    fetch(`http://localhost:3000/api/meats/search/${search}?sorting=${sortingState.sorting}`)
-    .then(data => data.json())
-    .then(json => {
-        productDispatch({
-            type: "ADD_PRODUCTS",
-            payload: json
+        sortingDispatch({
+            type: "SET_SEARCH",
+            payload: search
         })
-    })
-}
+    }
 
     return (
         <Form onSubmit={onSubmit}>

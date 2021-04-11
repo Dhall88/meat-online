@@ -8,7 +8,7 @@ import Cart from './views/cart';
 import About from './views/about';
 import ProductView from './views/productView';
 import Payment from './views/payment'
-// import Admin from './views/admin'
+import Admin from './views/admin'
 import "./App.css";
 import { ActiveProductContext } from "./context/activeProductContext";
 import { SortingContext } from "./context/sortingContext"
@@ -32,6 +32,7 @@ const App = () => {
     }
     return itemCount;
   }
+  
 
 	return (
 		<>
@@ -62,7 +63,7 @@ const App = () => {
             <header className="d-flex justify-content-between">
                 <h1>Quality Local Meats</h1>
               <nav className="d-flex">
-                {/* {userState.admin ? 
+                {userState.admin ? 
                 <NavLink
                 className='navlink'
                 exact
@@ -71,7 +72,7 @@ const App = () => {
                 Admin
               </NavLink>
               :""
-                } */}
+                }
                 <NavLink
                   className='navlink'
                   exact
@@ -125,7 +126,7 @@ const App = () => {
               </nav>
             </header>
             <Route path="/" exact component={Home} />
-            {/* <Route path="/admin" exact component={Admin} /> */}
+            <Route path="/admin" exact component={Admin} />
             <Route path="/wholesale" exact component={Wholesale} />
             <Route path="/about" exact component={About}/>
             <Route path="/cart" exact component={Cart}/>
