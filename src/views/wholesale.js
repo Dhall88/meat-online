@@ -14,8 +14,7 @@ const Wholesale = () => {
     const [signUp, setSignUp] = useState(false)
 
     const [userState, userDispatch] = useContext(UserContext)
-
-    console.log(userState)
+    
     return (
         <>
             {userState.loggedIn ?

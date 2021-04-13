@@ -11,9 +11,9 @@ const initialState = {
 
 
 const reducer = (state, action) => {
-  console.log(action.payload)
   switch (action.type) {
     case "ADD_PRODUCTS":
+      console.log(action.payload)
       return {
         products: action.payload
       };

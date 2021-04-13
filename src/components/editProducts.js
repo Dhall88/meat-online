@@ -8,7 +8,19 @@ const EditProducts = () => {
     const [productState, productDispatch] = useContext(ProductContext);
     const [sortingState, sortingDispatch] = useContext(SortingContext);
 
+    // console.log(sortingState)
+
+    // let products;
+
+    const buildTable = () => {
+        const products = productState.products.map((product, index) => {
+            return <EditProductTile key={`${Math.random()*Math.random()}`} product={product} />
+            
+        })
+        return products;
+    }
     useEffect(() => {
+        console.log('in edit effect')
         if (!!sortingState.search) {
             console.log('in use effect if')
             fetch(`/api/meats/search/${sortingState.search}?sorting=${sortingState.sorting}`)
@@ -32,18 +44,11 @@ const EditProducts = () => {
         })
     }
     },[sortingState]);
-
-    const buildTable = () => {
-        const products = productState.products.map((product, index) => {
-            return <EditProductTile key={`${product.name}${index}`} product={product} />
-            
-        })
-
-        return products;
-    }
+    console.log(productState.products)
     const products = buildTable();
     return (
         <>
+        <h1>Admin</h1>
         {products}
         </>
     )

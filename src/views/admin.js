@@ -4,6 +4,7 @@ import {PaginationContextProvider} from '../context/paginationContext'
 import Aside from '../components/aside'
 import SortingHeader from '../components/sortingHeader'
 import PaginationButtons from '../components/pagination'
+import AddNewProduct from '../components/addNewProduct'
 import {Container, Row, Col} from 'react-bootstrap'
 
 const Admin = () => {
@@ -23,6 +24,9 @@ const Admin = () => {
                     <Row>
 
                     <EditProducts/>
+                    </Row>
+                    <Row>
+                        <AddNewProduct/>
                     </Row>
                 </Col>
             </Row>
