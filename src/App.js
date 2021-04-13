@@ -137,7 +137,7 @@ const App = () => {
               </nav>
             </header>
             <Route path="/" exact component={Home} />
-            <Route path="/admin" exact component={Admin} />
+            <Route path="/admin" component={Admin} />
             <Switch>
               <Route path= {`/wholesale/${sortingState.category}/${activeProductState.activeProduct.name}`} exact component={ProductView} />                                               
               <Route path="/wholesale"  component={Wholesale} />

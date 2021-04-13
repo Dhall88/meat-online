@@ -9,8 +9,8 @@ const EditProducts = () => {
     const [sortingState, sortingDispatch] = useContext(SortingContext);
 
     useEffect(() => {
-        // console.log(sortingState.category)
         if (!!sortingState.search) {
+            console.log('in use effect if')
             fetch(`/api/meats/search/${sortingState.search}?sorting=${sortingState.sorting}`)
             .then(data => data.json())
             .then(json => {
@@ -21,6 +21,7 @@ const EditProducts = () => {
                 console.log(json)
         })
     } else {
+        console.log('in use effect else')
         fetch(`/api/meats/${sortingState.category}?sorting=${sortingState.sorting}`)
         .then(data => data.json())
         .then(json => {
@@ -34,7 +35,6 @@ const EditProducts = () => {
 
     const buildTable = () => {
         const products = productState.products.map((product, index) => {
-            console.log(product)
             return <EditProductTile key={`${product.name}${index}`} product={product} />
             
         })

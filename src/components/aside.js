@@ -12,8 +12,6 @@ const Cart = (props) => {
 
     const [sortingState, sortingDispatch] = useContext(SortingContext);
 
-    console.log(props.url)
-
 
     return (
         <Container>

@@ -37,7 +37,7 @@ const reducer = (state, action) => {
           
         result =  {category: state.category,
                   sorting: action.payload.sorting,
-                  search: ""
+                  search: action.payload.search
                   }
         }
         
@@ -45,7 +45,7 @@ const reducer = (state, action) => {
           console.log('in else')
           result = {category: action.payload.category,
                   sorting: action.payload.sorting,
-                  search: ""
+                  search: action.payload.search
                 }
         }
 
