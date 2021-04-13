@@ -58,7 +58,7 @@ const config = {
             alert('Encountered errors, check browser developer console for more details');
             return;
         }
-           fetch('http://localhost:3000/process-payment', {
+           fetch('/process-payment', {
               method: 'POST',
               headers: {
                 'Accept': 'application/json',

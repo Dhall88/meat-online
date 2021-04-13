@@ -9,7 +9,7 @@ import {CategoryContext} from '../context/categoryContext';
 import { SortingContext } from '../context/sortingContext';
 
 
-const ProductTable = () => {
+const ProductTable = (props) => {
 
     // const [productState, productDispatch] = useContext(ProductContext);
     // const [productState, setProducts] = useState([]);
@@ -28,7 +28,12 @@ const ProductTable = () => {
     useEffect(() => {
         // console.log(sortingState.category)
         if (!!sortingState.search) {
-            fetch(`http://localhost:3000/api/meats/search/${sortingState.search}?sorting=${sortingState.sorting}`)
+            fetch(`/api/meats/search/${sortingState.search}?sorting=${sortingState.sorting}`, {
+                headers: {
+                    Accept: 'application/json, text/plain, */*',
+                    'Content-Type': 'application/json',
+                }
+            })
             .then(data => data.json())
             .then(json => {
                 productDispatch({
@@ -37,8 +42,14 @@ const ProductTable = () => {
                 })
         })
     } else {
-        fetch(`http://localhost:3000/api/meats/${sortingState.category}?sorting=${sortingState.sorting}`)
+        fetch(`/api/meats/${sortingState.category}?sorting=${sortingState.sorting}`, {
+            headers: {
+                Accept: 'application/json, text/plain, */*',
+                'Content-Type': 'application/json',
+            }
+        })
         .then(data => data.json())
+            
         .then(json => {
             productDispatch({
                 type: "ADD_PRODUCTS",
@@ -57,7 +68,7 @@ const ProductTable = () => {
         let result = arr.map((product,index) => {
         
                 return  <Col xs={6} md={4}>
-                            <LinkContainer to = {`/products/${sortingState.category}/${product.name}`} onClick={() => activeProductDispatch({
+                            <LinkContainer to = {`/${props.url}/${sortingState.category}/${product.name}`} onClick={() => activeProductDispatch({
                                                                                     type: 'SET_PRODUCT',
                                                                                     payload: product})}>
                                 <Container>

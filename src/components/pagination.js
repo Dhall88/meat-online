@@ -3,11 +3,13 @@ import {Jumbotron, Container, Pagination} from 'react-bootstrap';
 import {ProductContext} from '../context/productContext';
 import {PaginationContext} from '../context/paginationContext'
 import {LinkContainer} from 'react-router-bootstrap'
+import {SortingContext} from '../context/sortingContext'
 
 const PaginationButtons = (props) => {
 
     const [productState, productDispatch] = useContext(ProductContext);
     const [paginationState, paginationDispatch] = useContext(PaginationContext);
+    const [sortingState, sortingDispatch] = useContext(SortingContext)
     
 
     const setPagination = (i) => {
@@ -30,7 +32,7 @@ const PaginationButtons = (props) => {
             let query = buildQuery(i);
             
             buttons.push(
-                    <LinkContainer key={i} to={`/${props.category}${query}`} onClick={() => setPagination(i)}>
+                    <LinkContainer key={i} exact to={`${sortingState.category}${query}`} onClick={() => setPagination(i)}>
                         <Pagination.Item  activeLabel='(current)' active={i===paginationState.pagination} >
                             {i}
                         </Pagination.Item>

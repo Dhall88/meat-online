@@ -20,7 +20,7 @@ if(!!cookies.get("sortingState")) {
 const initialState = {
     category: initialCategory,
   sorting: initialSorting,
-  search: "",
+  search: initialSearch,
   loading: false,
   error: null
 };
@@ -37,7 +37,7 @@ const reducer = (state, action) => {
           
         result =  {category: state.category,
                   sorting: action.payload.sorting,
-                  search: state.search
+                  search: ""
                   }
         }
         
@@ -53,13 +53,13 @@ cookies.set('sortingState', result, { path: '/' });
 return result;
     case "SET_SEARCH":
       console.log("in set search")
-
-      return {
-              category: state.category,
-              sorting: state.sorting,
-              search: action.payload
-      }
-
+        result = {
+          category: state.category,
+          sorting: state.sorting,
+          search: action.payload
+  }
+  cookies.set('sortingState', result, { path: '/' });
+      return result
       
     case "START":
       return {

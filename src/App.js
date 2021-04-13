@@ -14,6 +14,7 @@ import { ActiveProductContext } from "./context/activeProductContext";
 import { SortingContext } from "./context/sortingContext"
 import { CartContext } from "./context/cartContext"
 import { UserContext } from "./context/userContext"
+import LogOff from './views/logOff'
 
 const App = () => {
 
@@ -61,7 +62,7 @@ const App = () => {
 
           <HashRouter>
             <header className="d-flex justify-content-between">
-                <h1>Quality Local Meats</h1>
+                <h1>Quality Local Products</h1>
               <nav className="d-flex">
                 {userState.admin ? 
                 <NavLink
@@ -70,6 +71,16 @@ const App = () => {
                 to="/admin"
               >
                 Admin
+              </NavLink>
+              :""
+                }
+                {userState.loggedIn ? 
+                <NavLink
+                className='navlink'
+                exact
+                to="/logoff"
+              >
+                Logoff
               </NavLink>
               :""
                 }
@@ -127,7 +138,10 @@ const App = () => {
             </header>
             <Route path="/" exact component={Home} />
             <Route path="/admin" exact component={Admin} />
-            <Route path="/wholesale" exact component={Wholesale} />
+            <Switch>
+              <Route path= {`/wholesale/${sortingState.category}/${activeProductState.activeProduct.name}`} exact component={ProductView} />                                               
+              <Route path="/wholesale"  component={Wholesale} />
+            </Switch>
             <Route path="/about" exact component={About}/>
             <Route path="/cart" exact component={Cart}/>
             <Route path="/checkout" exact component={Payment} />
@@ -135,6 +149,7 @@ const App = () => {
               <Route path= {`/products/${sortingState.category}/${activeProductState.activeProduct.name}`} exact component={ProductView} />
               <Route path= {`/products/`}  component={Products} />
             </Switch>
+              <Route path={'/logoff'} exact component={LogOff} />
 
         </HashRouter>
         <footer>

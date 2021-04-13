@@ -6,21 +6,22 @@ import EditProductTile from './editProductTile'
 const EditProducts = () => {
 
     const [productState, productDispatch] = useContext(ProductContext);
-    const [sortingState, sortingDispatch] = useContext(SortingContext)
+    const [sortingState, sortingDispatch] = useContext(SortingContext);
 
     useEffect(() => {
         // console.log(sortingState.category)
         if (!!sortingState.search) {
-            fetch(`http://localhost:3000/api/meats/search/${sortingState.search}?sorting=${sortingState.sorting}`)
+            fetch(`/api/meats/search/${sortingState.search}?sorting=${sortingState.sorting}`)
             .then(data => data.json())
             .then(json => {
                 productDispatch({
                     type: "ADD_PRODUCTS",
                     payload: json
                 })
+                console.log(json)
         })
     } else {
-        fetch(`http://localhost:3000/api/meats/${sortingState.category}?sorting=${sortingState.sorting}`)
+        fetch(`/api/meats/${sortingState.category}?sorting=${sortingState.sorting}`)
         .then(data => data.json())
         .then(json => {
             productDispatch({
@@ -33,16 +34,17 @@ const EditProducts = () => {
 
     const buildTable = () => {
         const products = productState.products.map((product, index) => {
-            return <EditProductTile product={product} />
+            console.log(product)
+            return <EditProductTile key={`${product.name}${index}`} product={product} />
             
         })
 
         return products;
     }
-
+    const products = buildTable();
     return (
         <>
-        {buildTable()}
+        {products}
         </>
     )
 }

@@ -24,7 +24,7 @@ const Wholesale = () => {
             <Container fluid>
                 <Row>
                     <Col md='auto'>
-                        <Aside/>
+                        <Aside url={'wholesale'}/>
                     </Col>
                     <Col>
                         <Row>
@@ -32,7 +32,7 @@ const Wholesale = () => {
                         </Row>
                         <Row>
 
-                        <ProductTable/>
+                        <ProductTable url={'wholesale'}/>
                         </Row>
                         <Row>
 

@@ -8,12 +8,12 @@ import {Container, Row, Col} from 'react-bootstrap'
 
 const Admin = () => {
     return (
-        <PaginationContextProvider>
+
         <div className="product">
         <Container fluid>
             <Row>
                 <Col md='auto'>
-                    <Aside/>
+                    <Aside url={'admin'}/>
                 </Col>
                 <Col>
                     <Row>
@@ -24,10 +24,6 @@ const Admin = () => {
 
                     <EditProducts/>
                     </Row>
-                    <Row>
-
-                    <PaginationButtons/>
-                    </Row>
                 </Col>
             </Row>
             <Col>
@@ -35,7 +31,6 @@ const Admin = () => {
             </Col>
         </Container>
         </div>
-    </PaginationContextProvider>
     )
 }
 

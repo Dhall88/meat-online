@@ -8,9 +8,11 @@ import {ActiveProductContext} from '../context/activeProductContext';
 import {CartContext} from '../context/cartContext';
 import { SortingContext } from '../context/sortingContext';
 
-const Cart = () => {
+const Cart = (props) => {
 
     const [sortingState, sortingDispatch] = useContext(SortingContext);
+
+    console.log(props.url)
 
 
     return (
@@ -19,7 +21,7 @@ const Cart = () => {
             <Container>
                 <Row>
                     <Col xs={4} md={12}>
-                <LinkContainer to={`/products/steak`} onClick={() => sortingDispatch({
+                <LinkContainer to={`/${props.url}/steak`} onClick={() => sortingDispatch({
                                                                 type: "SET_CATEGORY",
                                                                 payload: {category:"steak",
                                                                         sorting:""}
@@ -28,7 +30,7 @@ const Cart = () => {
                 </LinkContainer>
                 </Col>
                 <Col xs={4} md={12}>
-                <LinkContainer to={`/products/beef`} onClick={() => sortingDispatch({
+                <LinkContainer to={`/${props.url}/beef`} onClick={() => sortingDispatch({
                                                                 type: "SET_CATEGORY",
                                                                 payload: {category: "beef",
                                                                           sorting:""}

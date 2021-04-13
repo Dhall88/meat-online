@@ -17,7 +17,7 @@ const Products = () => {
             <Container fluid>
                 <Row>
                     <Col md='auto'>
-                        <Aside/>
+                        <Aside url={'products'}/>
                     </Col>
                     <Col>
                         <Row>
@@ -26,7 +26,7 @@ const Products = () => {
                         </Row>
                         <Row>
 
-                        <ProductTable/>
+                        <ProductTable url={'products'}/>
                         </Row>
                         <Row>
 

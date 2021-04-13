@@ -9,7 +9,7 @@ const cookies = new Cookies();
 let initialCart;
 
 if(!!cookies.get("cartState")) {
-  initialCart=cookies.get("cartState").products
+  initialCart=cookies.get("cartState")
 } else {
   initialCart=[]
 }
@@ -20,10 +20,6 @@ const initialState = {
   error: null
 };
 
-
-
-
-console.log("in cart context")
 let result, existingItem;
 
 const reducer = (state, action) => {

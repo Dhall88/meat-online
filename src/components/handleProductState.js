@@ -9,7 +9,7 @@ const handleProdutState = (props) => {
 
     useEffect(() => {
         console.log("in use effect")
-        fetch(`http://localhost:3000/api/meats/`)
+        fetch(`/api/meats/`)
         .then(data => data.json())
         .then(json => {
             console.log(json)
