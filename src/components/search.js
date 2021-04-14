@@ -3,18 +3,22 @@ import {Form, Button} from 'react-bootstrap';
 import {SortingContext} from '../context/sortingContext'
 import {ProductContext} from '../context/productContext'
 import {CategoryContext} from '../context/categoryContext'
+import { useHistory } from "react-router-dom";
 
-const Search = () => {
+const Search = (props) => {
 
     const [search, setSearch] = useState('');
     const [sortingState, sortingDispatch] = useContext(SortingContext);
     const [productstate, productDispatch] = useContext(ProductContext);
+
+    const history = useHistory();
 
     const onSubmit = () => {
         sortingDispatch({
             type: "SET_SEARCH",
             payload: search
         })
+        history.push(`/${props.url}?search=${search}`)
     }
 
     return (

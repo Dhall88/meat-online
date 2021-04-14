@@ -17,16 +17,16 @@ const Products = () => {
             <Container fluid>
                 <Row>
                     <Col md='auto'>
-                        <Aside url={'products'}/>
+                        <Aside url='products'/>
                     </Col>
                     <Col>
                         <Row>
                         <SortingHeader/>
-                        <Search />
+                        <Search url='products' />
                         </Row>
                         <Row>
 
-                        <ProductTable url={'products'}/>
+                        <ProductTable url='products'/>
                         </Row>
                         <Row>
 

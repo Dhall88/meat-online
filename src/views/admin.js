@@ -14,12 +14,12 @@ const Admin = () => {
         <Container fluid>
             <Row>
                 <Col md='auto'>
-                    <Aside url={'admin'}/>
+                    <Aside url='admin'/>
                 </Col>
                 <Col>
                     <Row>
                     <SortingHeader/>
-                    <Search />
+                    <Search url='admin'/>
                     </Row>
                     <Row>
 

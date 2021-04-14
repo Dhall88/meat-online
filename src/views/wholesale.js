@@ -7,6 +7,7 @@ import Aside from '../components/aside';
 import SortingHeader from '../components/sortingHeader';
 import ProductTable from '../components/productTable';
 import PaginationButtons from '../components/pagination';
+import Search from '../components/search'
 import {PaginationContextProvider} from '../context/paginationContext';
 
 const Wholesale = () => {
@@ -14,7 +15,7 @@ const Wholesale = () => {
     const [signUp, setSignUp] = useState(false)
 
     const [userState, userDispatch] = useContext(UserContext)
-    
+
     return (
         <>
             {userState.loggedIn ?
@@ -28,6 +29,7 @@ const Wholesale = () => {
                     <Col>
                         <Row>
                         <SortingHeader/>
+                        <Search url='wholesale' />
                         </Row>
                         <Row>
 

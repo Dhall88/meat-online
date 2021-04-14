@@ -1,5 +1,5 @@
 import {useState, useEffect} from 'react'
-import {Row, Col, Image, Form, Button} from 'react-bootstrap'
+import {Row, Col, Image, Form, Button, Alert} from 'react-bootstrap'
 
 const EditProductTile = (props) => {
     // console.log(props)
@@ -9,6 +9,7 @@ const EditProductTile = (props) => {
     const [description, setDescription] = useState('')
     const [categories, setCategory] = useState([])
     const [newCat, setNewCat] = useState('')
+    const [show, setShow] = useState(false)
 
     useEffect(()=> {
 
@@ -91,6 +92,24 @@ const EditProductTile = (props) => {
         return result
     }
 
+    const removeItem = async() => {
+            // Default options are marked with *
+            const response = await fetch(`/api/meats/${props.product._id}`, {
+              method: 'DELETE', // *GET, POST, PUT, DELETE, etc.
+            //   mode: 'cors', // no-cors, *cors, same-origin
+            //   cache: 'no-cache', // *default, no-cache, reload, force-cache, only-if-cached
+            //   credentials: 'same-origin', // include, *same-origin, omit
+              headers: {
+                'Content-Type': 'application/json'
+                // 'Content-Type': 'application/x-www-form-urlencoded',
+              },
+            //   redirect: 'follow', // manual, *follow, error
+            //   referrerPolicy: 'no-referrer', // no-referrer, *no-referrer-when-downgrade, origin, origin-when-cross-origin, same-origin, strict-origin, strict-origin-when-cross-origin, unsafe-url
+              body: JSON.stringify(props.product) // body data type must match "Content-Type" header
+            });
+          }
+    
+
     return (
         <Row>
             <Col>
@@ -112,10 +131,28 @@ const EditProductTile = (props) => {
                     </Form.Group>
 
                 </Form>
-                    {buildCategories()}
-                    <Button variant="primary" onClick={saveInfo}>
-            Save Info
-        </Button> 
+
+                {buildCategories()}
+
+                <Button variant="primary" onClick={saveInfo}>
+                    Save Info
+                </Button> 
+                <Button variant="secondary" onClick={()=>setShow(true)} >
+                    Delete product
+                </Button>
+                <Alert show={show} variant="danger">
+                    <Alert.Heading>
+                        Are you sure?
+                    </Alert.Heading>
+                    You are about to remove a product from the database, this action cannot be reverse. Do you still with to continue?
+                    <Button onClick={()=>setShow(false)} >
+                        Cancel Action
+                    </Button>
+                    <Button onClick={removeItem}>
+                        Remove Product
+                    </Button>
+
+                </Alert>
             </Col>
 
         </Row>
