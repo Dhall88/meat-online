@@ -94,7 +94,7 @@ const EditProductTile = (props) => {
 
     const removeItem = async() => {
             // Default options are marked with *
-            const response = await fetch(`/api/meats/${props.product._id}`, {
+            fetch(`/api/meats/${props.product._id}`, {
               method: 'DELETE', // *GET, POST, PUT, DELETE, etc.
             //   mode: 'cors', // no-cors, *cors, same-origin
             //   cache: 'no-cache', // *default, no-cache, reload, force-cache, only-if-cached
@@ -106,7 +106,10 @@ const EditProductTile = (props) => {
             //   redirect: 'follow', // manual, *follow, error
             //   referrerPolicy: 'no-referrer', // no-referrer, *no-referrer-when-downgrade, origin, origin-when-cross-origin, same-origin, strict-origin, strict-origin-when-cross-origin, unsafe-url
               body: JSON.stringify(props.product) // body data type must match "Content-Type" header
-            });
+            })
+            .then((data) => {
+                if (data.status===200) setShow(false) 
+            })
           }
     
 
